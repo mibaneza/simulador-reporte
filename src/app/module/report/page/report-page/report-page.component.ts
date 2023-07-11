@@ -328,7 +328,7 @@ export class ReportPageComponent implements OnInit {
     const dni = window.localStorage.getItem("dni");
     
     if(dni){
-      //this.data =  await this.getSimuReport(dni);
+      this.data =  await this.getSimuReport(dni);
       if(!this.data) return
       if(this.data.cabecera1.length > 0){
         this.cabecera1 = this.data.cabecera1[0];
