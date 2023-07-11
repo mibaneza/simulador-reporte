@@ -1,0 +1,190 @@
+<section id="contentToConvert"  style="background-color: #f3f3f3;" >
+   <header class="toolbar-component">
+    <mat-toolbar class="container" >
+ 
+        <div class="mx-3  " style="background-color: rgba(0, 0, 0, 0.712);border-radius: 50px; width: 76px; height: 76px;">
+            <img src="/assets/iconperfil.svg" height="60" class="m-2" alt="" >
+        </div>
+            
+        <div class="row col-6  ">
+            <div class="col-12">
+                <span>Hola, {{(cabecera1.nombres+" "+cabecera1.ape_paterno).toUpperCase()}}</span>
+            </div>
+            <div class="col-12">
+                <span>Instituto de procedencia: {{cabecera1.insituto.toUpperCase()}}</span>
+            </div>
+        </div> 
+        <span class="example-spacer"></span>
+             
+        <div class="row   ">
+            <div class="col-12 texto-derecha">
+                <span>¿No sabes qué estudiar?</span>
+            </div>
+            <div class="col-12 texto-derecha">
+                <button class="button-style" style="font-size: 0.8em; font-weight: 500;">VER CARRERAS</button>
+            </div>
+        </div> 
+         
+
+      </mat-toolbar>
+   </header>
+   <section class="text-center my-5" style="font-size: 1.2em;">
+        <span  style="color: #3a3a3a;">En la carrera:</span><br/>
+        <strong style="color: #3a3a3a;">{{cabecera1.carrera_cpe.toUpperCase()}}</strong><br/>
+        <button class="button-style my-4"
+        style="height: 2.8em; font-size: 1.5em; border-radius: 8px !important;  font-weight: 600;">
+            CONVALIDARÍAS: {{cabecera2.convalidados}} CURSOS DE {{cabecera2.total}}</button><br/>
+        <span style="color: #575757;">Averigua con otra de nuestras 8 carreras:</span><br/>
+
+      <mat-form-field  style="width: 20em;"  color="warn" class=" pt-3 pb-5 px-0 mx-0" appearance="outline">
+        <mat-label>Opciones</mat-label>
+        <mat-select  name="carrera">
+          <mat-option value="masculino">1</mat-option>
+          <mat-option value="femenino">2</mat-option>
+        </mat-select>
+      </mat-form-field>
+   </section>
+   <section style="width: 100%; background-color: #e1e1e1;" class="my-5">
+    <div class="container py-4">
+        <div class="    row justify-content-start my-5 mt-5">
+            <h2 style="color: #3b3b3b;" class="mb-0">Leyenda:</h2>
+           
+                <button class="button-style mx-2  "
+                style="height: 4em; width: 9em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400;">
+                   <span  >CURSO CONVALIDADO</span> </button> 
+        
+                <button class="button-style  "
+                style="height: 4em; width: 7em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400;background-color: #b4b4b4;">
+                    CURSO PENDIENTE</button> 
+         
+        </div>
+
+
+        <div  class="row col-12" *ngFor="let element of cabecera3">
+            <div class="text-center m-2 "
+             style=" width: 230px; background-color: #002b83; color: rgb(255, 255, 255); border-radius: 4px;">
+                <div class="container-xxd ">
+                    <span class="me-3" style="font-size: 3em;  font-weight: 500;">{{element[0].ciclo}}°</span> 
+                    <span style="font-size: 2em; font-weight: 400;">CICLO</span>
+                </div>
+            </div>
+
+            <div class="text-center m-2 "  *ngFor="let elementSub of element"
+            style=" width: 230px;  border-radius: 4px;"
+            [ngStyle]="{
+                'background-color': !!elementSub.convalida ? '#ff7f17' : '#b4b4b4',
+                'color': !!elementSub.convalida ? '#fff' : '#6b6b6b'
+            }" 
+            >
+               <div class="container-xxd  ">
+                   <span class=" text-center" style="font-size: 1.2em;  font-weight:100;  ">{{elementSub.curso}}</span> 
+                
+               </div>
+           </div>
+
+
+            <!--
+            <div class="text-center m-2 "
+            style=" width: 230px; background-color: #b4b4b4; color: #6b6b6b; border-radius: 4px;">
+               <div class="container-xxd  ">
+                   <span class=" text-center" style="font-size: 1.2em;   ">Métodos 
+                    Cuantitativos 
+                    Aplicados 
+                    a los Negocios</span> 
+                
+               </div>
+           </div>
+           <div class="text-center m-2 "
+           style=" width: 230px; background-color: #ff7f17; color: #fff; border-radius: 4px;">
+              <div class="container-xxd  ">
+                  <span class=" text-center" style="font-size: 1.2em;  font-weight:100;  ">Desempeño Universitario y Liderazgo</span> 
+               
+              </div>
+          </div>-->
+        </div>
+        
+    </div>
+   </section>
+   <section class="container">
+   <section class="row justify-content-between ">
+    <div class="col-sm-6 col-md-7	col-lg-	col-xl-	col-xxl-   row justify-content-start">
+        <h2 style="color: #796464;" class="mb-0">Opciones:</h2>
+        <div class="col-sm-12	col-md-6	col-lg-4	col-xl-4	col-xxl-4  "><img src="/assets/enviar-correo-bt-365x72.png" height="40"    alt="" class="    "></div>
+        <div class="col-sm-12	col-md-6	col-lg-5	col-xl-5	col-xxl-5"><img (click)="convertirPdf()"src="/assets/DESCARGAR-BT-273X72.png" height="40"    alt="" class="    "></div>
+     
+    </div>
+
+ 
+    <div class="col-sm-6 col-md-5	col-lg-5	col-xl-5	col-xxl-5   texto-derecha ">
+        <h2 class="col-12 texto-derecha  " style="color: #999999;  ">Para mayor información:</h2>
+        <div class="align-self-end ">
+            <img  src="/assets/BTWSP-317X108.png" height="70"    alt="" class=" ps-5  ">
+        </div>
+    </div>
+
+ 
+</section>
+   <hr />
+   <section class="pb-3">
+    <h5><strong>NOTA:</strong></h5>
+    <div class="flex-container div-top">
+       <div class="contenedor  "><mat-icon   class="hijo">brightness_1</mat-icon> 
+    </div>
+    <p >
+        Este simulador ha sido elaborado exclusivamente como una herramienta con fines informativos. La información 
+        que brinde es referencial y podrá estar sujeta a cambios sin previo aviso, según las mallas curriculares de la 
+        Universidad Científica del Sur 
+    </p>
+
+    </div>
+    <div class="flex-container div-top">
+        <div class="contenedor  "><mat-icon   class="hijo2">brightness_1</mat-icon> 
+     </div>
+     <p >
+        Este simulador ofrece información sobre posibles convalidaciones, las cuales de ninguna forma aplicarán de forma automática.
+     </p>
+ 
+     </div>
+     <div class="flex-container div-top">
+        <div class="contenedor  "><mat-icon   class="hijo2">brightness_1</mat-icon> 
+     </div>
+     <p >
+        La convalidación que finalmente realice la Universidad dependerá de la documentación que el alumno presente 
+        en el proceso de admisión correspondiente.
+     </p>
+ 
+     </div>
+   </section>
+</section>
+    
+   
+   
+   <footer class="background-container ">
+ 
+   </footer>
+   <footer class="mt-1 background-containerx ">
+ 
+   </footer>
+   <!-- <footer class="footer-background ">
+    
+        <div class="container flex-container">
+            <strong class="flex-container  my-auto" style="color: #fff; font-size: 0.8em;">
+                <p style="" class="text-color  " >#PRESTIGIO</p><p>CIENTÍFICA</p> 
+            </strong>
+        
+            <strong class=" py-5 ps-5" style="color: #fff;  font-size: 0.8em;">
+                 Una de las 
+                <div class="text-color" style="font-size: 1.5em;">4 mejores</div> 
+                <div >universidades</div> 
+                <div >del Perú</div> 
+ 
+            </strong>
+        
+            <strong class="flex-container py-5 ps-3" style="color: #fff; font-size: 0.8em;">
+                <p style=" " class="text-color  " >#PRESTIGIO</p><p>CIENTÍFICA</p> 
+            </strong>
+        </div>
+
+  
+    </footer>-->
+</section>

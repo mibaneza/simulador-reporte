@@ -1,0 +1,49 @@
+
+ .text-color{
+   // font-family: 'Gotham Book';
+    color:#ff7f17;
+ 
+
+  
+ }
+.background-home{
+    background: radial-gradient(circle at 49% 11%, rgba(0, 188, 212, 1) 0%, rgba(25, 52, 111, 1) 37%, rgba(0, 12, 74, 1) 69%, rgba(0, 12, 74, 1) 96%) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    background-size: 100% 100%;
+}
+ 
+.background-container{
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-image: url('/assets/PORTADA-LANDING-1920X1345.png');
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    overflow-y: scroll;
+
+    
+  
+}
+
+.componente-hijo {
+    transform: scale(0.85);
+ 
+  }
+
+  .subtitulo { 
+    font-size: 77px;
+     text-shadow: -2px 2px 5px black;;
+     font-size: 3em; color: aliceblue;
+ 
+
+    
+      
+    }
+    .flex-container{
+        display: flex;
+        align-items: flex-end;
+    }
+    .flex-row {
+        float:left;
+      }

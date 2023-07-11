@@ -1,0 +1,35 @@
+.border-form{
+    border-radius: 50px;
+    border: 4px solid #ff7f17;
+    padding: 0px;
+    background-color: azure;
+    float: left;
+ }
+
+ .text-color{
+    // font-family: 'Gotham Book';
+     color:#ff7f17;
+  }
+
+  .mat-mdc-checkbox label{
+    font-size: 0.8em;
+  }
+
+  label{
+    font-size: 0.8em !important;
+  }
+
+  .mdc-checkbox{
+    font-size: 0.8em !important;
+  }
+  .mat-checkbox .mat-checkbox-frame {
+    transform: scale(2);
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+    transform: scale(2);
+}
+
+.componente-hijo {
+    transform: scale(0.95);
+  }
