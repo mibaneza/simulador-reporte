@@ -37,6 +37,11 @@ export class HttpService {
     return this.http.get<report>(this.URL_2+"/simu/reportes/"+dni); 
   }
   
+  
+  getSimuReportCarreraID(dni:string, carreraId:string){ 
+    return this.http.get<report>(this.URL_2+"/simu/reportes/"+dni+"/"+carreraId); 
+  }
+  
 
 }
 

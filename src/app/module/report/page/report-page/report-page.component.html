@@ -39,8 +39,7 @@
       <mat-form-field  style="width: 20em;"  color="warn" class=" pt-3 pb-5 px-0 mx-0" appearance="outline">
         <mat-label>Opciones</mat-label>
         <mat-select  name="carrera">
-          <mat-option value="masculino">1</mat-option>
-          <mat-option value="femenino">2</mat-option>
+            <mat-option (click)="getSimuReportCarrera(carrera.id)" [value]="carrera.id" *ngFor="let carrera of list_carreras">{{carrera.nombre}}</mat-option>
         </mat-select>
       </mat-form-field>
    </section>

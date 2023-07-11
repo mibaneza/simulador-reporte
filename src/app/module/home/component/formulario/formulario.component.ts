@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarreraModel, FormDataModel, HttpService, InstitucionModel } from 'src/app/service/http.service';
+import { UtilService } from 'src/app/util/util.service';
 
 @Component({
   selector: 'app-formulario',
@@ -41,12 +42,15 @@ export class FormularioComponent implements OnInit{
   
   constructor(
     private httpService: HttpService,
-    private router: Router
+    private router: Router, 
+    private utilService: UtilService 
     ) {}
 
   async ngOnInit() {
+    this.utilService.swalStartLoading();
     await this.getInstitu();
     await this.getCarreras();
+    this.utilService.swalClose();
   }
 
   getInstitu(){
@@ -58,6 +62,8 @@ export class FormularioComponent implements OnInit{
           console.log(data)
           },
         error: (err:any) => {
+          this.utilService.swalClose();
+          
           reject(err);
           console.error(err);
         }
@@ -74,6 +80,7 @@ export class FormularioComponent implements OnInit{
           console.log(data)
           },
         error: (err:any) => {
+          this.utilService.swalClose();
           reject(err);
           console.error(err);
         }
@@ -99,18 +106,20 @@ export class FormularioComponent implements OnInit{
   }
 
   submitForm(form:any) {
+    this.utilService.swalStartLoading();
    this.formData["p_sel_autorizo"] = this.politicaCheck;
    this.formData["p_sel_politica"] = this.autorizoCheck;
    if(form.form.status == "VALID"){
     const observer = {
       next: (data:any) => {
-        window.localStorage.setItem("dni",this.formData['dni']);
+        this.utilService.swalClose();
+        window.localStorage.setItem("formData",JSON.stringify(this.formData) );
         this.router.navigate(['/report']);
-        console.log(data)
+
         },
       error: (err:any) => {+
-        window.localStorage.setItem("dni",this.formData['dni']);
-        this.router.navigate(['/report']);
+        this.utilService.swalClose();
+        this.utilService.swalErrorRegistro(err.message)
         console.error(err);
       }
     };

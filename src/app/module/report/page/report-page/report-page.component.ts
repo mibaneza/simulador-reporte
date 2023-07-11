@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as html2pdf from 'html2pdf.js'
-import { HttpService, cabecera1, cabecera2, cabecera3, report } from 'src/app/service/http.service';
+import { CarreraModel, FormDataModel, HttpService, cabecera1, cabecera2, cabecera3, report } from 'src/app/service/http.service';
+import { UtilService } from 'src/app/util/util.service';
 
 @Component({
   selector: 'app-report-page',
@@ -12,6 +13,7 @@ export class ReportPageComponent implements OnInit {
   cabecera1:cabecera1;
   cabecera2:cabecera2;
   cabecera3:cabecera3[][] = [];
+  list_carreras : CarreraModel[] = [];
   data:report = {
     "cabecera1": [
         {
@@ -317,18 +319,22 @@ export class ReportPageComponent implements OnInit {
     "success": true,
     "message": "Successful"
 }
+  formData:FormDataModel   ;
   /**
    *
    */
-  constructor(  private httpService: HttpService ) {
+  constructor(  private httpService: HttpService, private utilService: UtilService ) {
     
     
   }
   async ngOnInit()  {
-    const dni = window.localStorage.getItem("dni");
-    
-    if(dni){
-      this.data =  await this.getSimuReport(dni);
+  //  const dni = window.localStorage.getItem("dni");
+    this.formData =  JSON.parse( window.localStorage.getItem("formData"));
+    const {p_dni} = this.formData;
+    if(p_dni){
+        this.utilService.swalStartLoading();
+      this.data =  await this.getSimuReport(p_dni);
+      this.getCarreras()
       if(!this.data) return
       if(this.data.cabecera1.length > 0){
         this.cabecera1 = this.data.cabecera1[0];
@@ -339,12 +345,7 @@ export class ReportPageComponent implements OnInit {
       if(this.data.cabecera3.length > 0){
         this.mapCabecera3();
       }
-    }else{
-      this.cabecera1 = this.data.cabecera1[0];
-      this.cabecera2 = this.data.cabecera2[0];
-      this.mapCabecera3();
-  
-    }
+    } 
      
   }
   mapCabecera3(){
@@ -370,15 +371,54 @@ export class ReportPageComponent implements OnInit {
     return new Promise((resolve, reject)=>{
       const observer = {
         next: (data:report) => {
+          this.utilService.swalClose();
           resolve(data);
           console.log(data)
           },
         error: (err:any) => {
+          this.utilService.swalClose();
           reject(err);
           console.error(err);
         }
       };
       this.httpService.getSimuReport(dni).subscribe(observer)
+    })
+  }
+  getSimuReportCarrera( codigo: string) : Promise<report>{
+    this.utilService.swalStartLoading();
+    return new Promise((resolve, reject)=>{
+      const {p_dni } =  this.formData;
+      const observer = {
+        next: (data:report) => {
+          this.utilService.swalClose();
+          resolve(data);
+          console.log(data)
+          },
+        error: (err:any) => {
+          this.utilService.swalClose();
+          reject(err);
+          console.error(err);
+        }
+      };
+      this.httpService.getSimuReportCarreraID( p_dni, codigo ).subscribe(observer)
+    })
+  }
+  getCarreras(){
+    return new Promise((resolve, reject)=>{
+      const observer = {
+        next: (data:CarreraModel[]) => {
+          this.list_carreras = data;
+          this.utilService.swalClose();
+          resolve(data);
+          console.log(data)
+          },
+        error: (err:any) => {
+          this.utilService.swalClose();
+          reject(err);
+          console.error(err);
+        }
+      };
+      this.httpService.getCarreraAll().subscribe(observer)
     })
   }
   convertirPdf(){
