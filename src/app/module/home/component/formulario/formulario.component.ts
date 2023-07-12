@@ -48,8 +48,8 @@ export class FormularioComponent implements OnInit{
 
   async ngOnInit() {
     this.utilService.swalStartLoading();
-    await this.getInstitu();
     await this.getCarreras();
+    await this.getInstitu();
     this.utilService.swalClose();
   }
 

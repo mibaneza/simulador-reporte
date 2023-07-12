@@ -11,9 +11,9 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getCarreraAll() { return this.http.get<CarreraModel[]>(this.URL+"/carreras"); }
-  getCarreraByCodInsti(inst:string) { return this.http.get<CarreraModel[]>(this.URL+"/carreras/"+inst); }
-  getInstituciones() { return this.http.get<InstitucionModel[]>(this.URL+"/carreras"); }
+  getCarreraAll() { return this.http.get<CarreraModel[]>(this.URL+"/simu/carreras"); }
+  getCarreraByCodInsti(inst:string) { return this.http.get<CarreraModel[]>(this.URL+"/simu/carreras/"+inst); }
+  getInstituciones() { return this.http.get<InstitucionModel[]>(this.URL+"/simu/instituciones"); }
   
   sendFormValidSolicitudPostulante(formData : FormDataModel ){
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
