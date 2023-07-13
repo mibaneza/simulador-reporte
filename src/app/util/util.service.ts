@@ -11,7 +11,7 @@ export class UtilService {
     Swal.fire({
       title: 'Cargando...',
  
-      timer: 2000,
+     // timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()

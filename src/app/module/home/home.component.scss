@@ -6,25 +6,7 @@
 
   
  }
-.background-home{
-    background: radial-gradient(circle at 49% 11%, rgba(0, 188, 212, 1) 0%, rgba(25, 52, 111, 1) 37%, rgba(0, 12, 74, 1) 69%, rgba(0, 12, 74, 1) 96%) no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
-    background-size: 100% 100%;
-}
- 
-.background-container{
-    height: 100%;
-    width: 100%;
-    background-size:cover;
-    background-image: url('/assets/PORTADA-LANDING-1920X1345.png');
-    background-repeat:no-repeat;
-    background-attachment: fixed;
-    overflow-y: scroll;
 
-    
-  
-}
 
 .componente-hijo {
     transform: scale(0.85);
@@ -47,3 +29,87 @@
     .flex-row {
         float:left;
       }
+
+      .background-containeru{
+        height:30em;
+        background-image:               
+        url("/assets/LOGOS-1920X688.png");
+        background-size:cover;
+       // background-image: url('/assets/LOGOS-1920X688.png');
+        background-repeat:no-repeat;
+        background-position: center center;
+     //   background-attachment: fixed;
+    //    overflow-y: scroll;
+    
+        
+      
+    }
+    .background-containerxu{
+        height:200px;
+        background-image:               
+        url("/assets/PIE-1920X241.png");
+        background-size:cover;
+       // background-image: url('/assets/LOGOS-1920X688.png');
+        background-repeat:no-repeat;
+        background-position: center center;
+     //   background-attachment: fixed;
+    //    overflow-y: scroll;
+     
+    }
+.background-home{
+  background: radial-gradient(circle at 49% 11%, rgba(0, 188, 212, 1) 0%, rgba(25, 52, 111, 1) 37%, rgba(0, 12, 74, 1) 69%, rgba(0, 12, 74, 1) 96%) no-repeat center center ;
+ //   background-size: cover;
+ //   height: 100%;
+//    background-size: 100% 100%;
+overflow-x: none !important;
+}
+ 
+.background-container{
+  //  height: 100%;
+  //  width: 100%;
+  margin: 0px;
+  min-height:1200px;
+  background: radial-gradient(circle at 49% 11%, rgba(0, 188, 212, 1) 0%, rgba(25, 52, 111, 1) 37%, rgba(0, 12, 74, 1) 69%, rgba(0, 12, 74, 1) 96%) no-repeat center center ;
+ //
+    background-size:cover;
+    background-image: url('/assets/PORTADA-LANDING-1920X1345.png');
+    background-repeat:no-repeat;
+   // background-position: center center;
+   //background-attachment: local;
+  // overflow-y: scroll;
+  overflow-x: none !important;
+
+    
+  
+}
+
+@media (min-width: 768px) {
+  .alian-value{
+
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  
+  }
+}
+@media (min-width: 992px) {
+  .alian-value{
+
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+  
+  }
+}
+@media (min-width: 1200px) {
+  .alian-value{
+
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+  
+  }
+}
+ 

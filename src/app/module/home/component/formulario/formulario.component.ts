@@ -106,10 +106,12 @@ export class FormularioComponent implements OnInit{
   }
 
   submitForm(form:any) {
-    this.utilService.swalStartLoading();
+  
    this.formData["p_sel_autorizo"] = this.politicaCheck;
    this.formData["p_sel_politica"] = this.autorizoCheck;
+   console.log(form.form.status);
    if(form.form.status == "VALID"){
+    this.utilService.swalStartLoading();
     const observer = {
       next: (data:any) => {
         this.utilService.swalClose();
@@ -124,6 +126,8 @@ export class FormularioComponent implements OnInit{
       }
     };
     this.httpService.sendFormValidSolicitudPostulante(this.formData).subscribe(observer)
+   }else{
+    this.utilService.swalWarning("Warning: Campos Obligatorios.", "Los campos del formulario estan vacios.")
    }
  
   }
