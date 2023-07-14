@@ -393,6 +393,7 @@ export class ReportPageComponent implements OnInit {
        
             }
           })
+          this.routing.navigate(['/home']);
           reject(err);
           console.error(err);
         }
