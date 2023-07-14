@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as html2pdf from 'html2pdf.js'
 import { CarreraModel, FormDataModel, HttpService, cabecera1, cabecera2, cabecera3, report } from 'src/app/service/http.service';
 import { UtilService } from 'src/app/util/util.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-report-page',
@@ -323,7 +325,7 @@ export class ReportPageComponent implements OnInit {
   /**
    *
    */
-  constructor(  private httpService: HttpService, private utilService: UtilService ) {
+  constructor(  private httpService: HttpService, private utilService: UtilService, private routing: Router ) {
     
     
   }
@@ -377,6 +379,20 @@ export class ReportPageComponent implements OnInit {
           },
         error: (err:any) => {
           this.utilService.swalClose();
+          Swal.fire({
+            title: 'Opps..',
+            text: "Ocurrio un error!",
+            icon: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+ 
+            confirmButtonText: 'ok!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.routing.navigate(['/home']);
+       
+            }
+          })
           reject(err);
           console.error(err);
         }
