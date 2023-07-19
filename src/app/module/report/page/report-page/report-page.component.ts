@@ -390,6 +390,7 @@ export class ReportPageComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               this.routing.navigate(['/home']);
+         //     this.routing.navigate(['/home']);
        
             }
           })
@@ -449,5 +450,51 @@ export class ReportPageComponent implements OnInit {
   
     const element = document.getElementById('contentToConvert');
     html2pdf().set(options).from(element).save();
+  }
+
+
+  sendMail() {
+    this.utilService.swalStartLoading();
+    return new Promise(async(resolve, reject)=>{
+      const {p_carrera_interes:mail } =  this.formData;
+      const observer = {
+        next: (data:report) => {
+          this.utilService.swalClose();
+          resolve(data);
+          console.log(data)
+          },
+        error: (err:any) => {
+          this.utilService.swalClose();
+          reject(err);
+          console.error(err);
+        }
+      };
+      const files = await this.PdfToFile();
+      const payload = {mail, files }
+      console.log(payload);
+      this.httpService.sendEmail(payload).subscribe(observer)
+    })
+  }
+ PdfToFile():Promise<File|boolean>{
+    const options = {
+      margin: 0,
+      filename: 'documento.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a2', orientation: 'portrait',  }
+    };
+  
+    const element = document.getElementById('contentToConvert');
+   return new Promise((resolve, reject)=>{
+    html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
+      resolve( new File([pdfObject], 'documento.pdf', { type: 'application/pdf' }));
+    }).catch(error=>{
+      console.log(error);
+      resolve(false);
+    });
+   });
+ 
+
+  
   }
 }

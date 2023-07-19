@@ -41,6 +41,13 @@ export class HttpService {
   getSimuReportCarreraID(dni:string, carreraId:string){ 
     return this.http.get<report>(this.URL_2+"/simu/reportes/"+dni+"/"+carreraId); 
   }
+    
+  sendEmail(payload:{
+    mail:string,
+    files: boolean | File
+  }){ 
+    return this.http.post<report>(this.URL_2+"/simu/envios/",payload); 
+  }
   
 
 }
