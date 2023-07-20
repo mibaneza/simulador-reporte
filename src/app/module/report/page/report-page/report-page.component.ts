@@ -463,7 +463,7 @@ export class ReportPageComponent implements OnInit {
         next: (data:report) => {
           this.utilService.swalClose();
           resolve(data);
-          console.log(data)
+          console.log("sendEmail",data)
           },
         error: (err:any) => {
           this.utilService.swalClose();
@@ -475,7 +475,7 @@ export class ReportPageComponent implements OnInit {
       let formData = new FormData();
       formData.append("file", files[0]); // 0 = only a file
       formData.append("mail", mail);
- 
+      console.log("formData",formData)
       this.httpService.sendEmail(formData).subscribe(observer)
     })
   }

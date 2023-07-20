@@ -43,7 +43,7 @@ export class HttpService {
   }
     
   sendEmail(payload:FormData){ 
-    return this.http.post<report>(this.URL_2+"/simu/envios/",payload); 
+    return this.http.post<report>(this.URL_2+"/simu/envios",payload); 
   }
   
 
