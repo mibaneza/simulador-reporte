@@ -439,6 +439,8 @@ export class ReportPageComponent implements OnInit {
       this.httpService.getCarreraAll().subscribe(observer)
     })
   }
+
+ 
   convertirPdf(){
     const options = {
       margin: 0,
@@ -469,13 +471,13 @@ export class ReportPageComponent implements OnInit {
           console.error(err);
         }
       };
-      const files = await this.PdfToFile();
+      const files =  await this.PdfToFile() ;
       const payload = {mail, files }
       console.log(payload);
       this.httpService.sendEmail(payload).subscribe(observer)
     })
   }
- PdfToFile():Promise<File|boolean>{
+ PdfToFile():Promise<File[] >{
     const options = {
       margin: 0,
       filename: 'documento.pdf',
@@ -487,10 +489,10 @@ export class ReportPageComponent implements OnInit {
     const element = document.getElementById('contentToConvert');
    return new Promise((resolve, reject)=>{
     html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
-      resolve( new File([pdfObject], 'documento.pdf', { type: 'application/pdf' }));
+      resolve( [new File([pdfObject], 'documento.pdf', { type: 'application/pdf' })]);
     }).catch(error=>{
       console.log(error);
-      resolve(false);
+      resolve([]);
     });
    });
  

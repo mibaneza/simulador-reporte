@@ -44,7 +44,7 @@ export class HttpService {
     
   sendEmail(payload:{
     mail:string,
-    files: boolean | File
+    files:   File[]
   }){ 
     return this.http.post<report>(this.URL_2+"/simu/envios/",payload); 
   }
