@@ -472,9 +472,11 @@ export class ReportPageComponent implements OnInit {
         }
       };
       const files =  await this.PdfToFile() ;
-      const payload = {mail, files }
-      console.log(payload);
-      this.httpService.sendEmail(payload).subscribe(observer)
+      let formData = new FormData();
+      formData.append("file", files[0]); // 0 = only a file
+      formData.append("mail", mail);
+ 
+      this.httpService.sendEmail(formData).subscribe(observer)
     })
   }
  PdfToFile():Promise<File[] >{
@@ -489,7 +491,8 @@ export class ReportPageComponent implements OnInit {
     const element = document.getElementById('contentToConvert');
    return new Promise((resolve, reject)=>{
     html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
-      resolve( [new File([pdfObject], 'documento.pdf', { type: 'application/pdf' })]);
+      const file = new File([pdfObject], 'documento.pdf', { type: 'application/pdf' });
+      resolve( [file]);
     }).catch(error=>{
       console.log(error);
       resolve([]);

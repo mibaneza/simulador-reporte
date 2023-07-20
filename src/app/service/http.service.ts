@@ -42,10 +42,7 @@ export class HttpService {
     return this.http.get<report>(this.URL_2+"/simu/reportes/"+dni+"/"+carreraId); 
   }
     
-  sendEmail(payload:{
-    mail:string,
-    files:   File[]
-  }){ 
+  sendEmail(payload:FormData){ 
     return this.http.post<report>(this.URL_2+"/simu/envios/",payload); 
   }
   
