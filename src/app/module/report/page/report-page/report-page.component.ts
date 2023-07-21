@@ -481,12 +481,10 @@ export class ReportPageComponent implements OnInit {
       };
  
       html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
-          // Crear un Blob a partir del contenido binario
-          const blob = new Blob([pdfObject], { type: 'application/pdf' });
-
-          let files = new File( [blob] , 'documento.pdf', { type: 'application/pdf' });
+        
+          let files = new File( [pdfObject] , 'documento.pdf', { type: 'application/pdf' });
           let formData = new FormData();
-          formData.append("file", files ); // 0 = only a file
+          formData.append("file", files, files.name ); // 0 = only a file
           formData.append("mail", mail);
           console.log("formData",formData)
           this.httpService.sendEmail(formData).subscribe(observer);
