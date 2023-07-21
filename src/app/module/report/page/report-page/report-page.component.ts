@@ -389,12 +389,12 @@ export class ReportPageComponent implements OnInit {
             confirmButtonText: 'ok!'
           }).then((result) => {
             if (result.isConfirmed) {
-              this.routing.navigate(['/home']);
+         //     this.routing.navigate(['/home']);
          //     this.routing.navigate(['/home']);
        
             }
           })
-          this.routing.navigate(['/home']);
+       //   this.routing.navigate(['/home']);
           reject(err);
           console.error(err);
         }
@@ -457,6 +457,14 @@ export class ReportPageComponent implements OnInit {
 
   sendMail() {
     this.utilService.swalStartLoading();
+    const options = {
+      margin: 0,
+      filename: 'documento.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a2', orientation: 'portrait',  }
+    };
+    const element = document.getElementById('contentToConvert');
     return new Promise(async(resolve, reject)=>{
       const {p_carrera_interes:mail } =  this.formData;
       const observer = {
@@ -471,12 +479,19 @@ export class ReportPageComponent implements OnInit {
           console.error(err);
         }
       };
-      const files =  await this.PdfToFile() ;
-      let formData = new FormData();
-      formData.append("file", files[0]); // 0 = only a file
-      formData.append("mail", mail);
-      console.log("formData",formData)
-      this.httpService.sendEmail(formData).subscribe(observer)
+ 
+      html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
+          let files = new File( [pdfObject] , 'documento.pdf', { type: 'application/pdf' });
+          let formData = new FormData();
+          formData.append("file", files ); // 0 = only a file
+          formData.append("mail", mail);
+          console.log("formData",formData)
+          this.httpService.sendEmail(formData).subscribe(observer);
+      }).catch(error=>{
+        console.log(error);
+         
+      });
+     
     })
   }
  PdfToFile():Promise<File[] >{
@@ -491,7 +506,7 @@ export class ReportPageComponent implements OnInit {
     const element = document.getElementById('contentToConvert');
    return new Promise((resolve, reject)=>{
     html2pdf().set(options).from(element).outputPdf('blob').then((pdfObject) => {
-      const file = new File([pdfObject], 'documento.pdf', { type: 'application/pdf' });
+      const file = new File(pdfObject, 'documento.pdf', { type: 'application/pdf' });
       resolve( [file]);
     }).catch(error=>{
       console.log(error);
