@@ -110,7 +110,20 @@ export class FormularioComponent implements OnInit{
    this.formData["p_sel_autorizo"] = this.politicaCheck;
    this.formData["p_sel_politica"] = this.autorizoCheck;
    console.log(form.form.status);
+   console.log(form.form.value)
+   console.log(String(form.form.value.p_dni).length);
+   
+   if(!this.esDireccionEmailValida(form.form.value.p_carrera_interes)){
+    this.utilService.swalWarning("Warning..", "Email invalido.");
+    return
+  }
+    if(String(form.form.value.p_dni).length != 8){
+      this.utilService.swalWarning("Warning..", "El dni es invalido.");
+      return
+    }
+  
    if(form.form.status == "VALID"){
+ 
     this.utilService.swalStartLoading();
     const observer = {
       next: (data:any) => {
@@ -131,5 +144,8 @@ export class FormularioComponent implements OnInit{
    }
  
   }
- 
+  esDireccionEmailValida(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  }
 }
