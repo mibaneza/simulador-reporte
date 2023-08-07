@@ -16,14 +16,14 @@
         </div> 
         <span class="example-spacer"></span>
              
-        <div class="row   ">
+       <!-- <div class="row   ">
             <div class="col-12 texto-derecha">
                 <span>¿No sabes qué estudiar?</span>
             </div>
             <div class="col-12 texto-derecha">
                 <button class="button-style" style="font-size: 0.8em; font-weight: 500;">VER CARRERAS</button>
             </div>
-        </div> 
+        </div> -->
          
 
       </mat-toolbar>
@@ -34,14 +34,14 @@
         <button class="button-style my-4"
         style="height: 2.8em; font-size: 1.5em; border-radius: 8px !important;  font-weight: 600;">
             CONVALIDARÍAS: {{cabecera2.convalidados}} CURSOS DE {{cabecera2.total}}</button><br/>
-        <span style="color: #575757;">Averigua con otra de nuestras 8 carreras:</span><br/>
+     <!--<span style="color: #575757;">Averigua con otra de nuestras 8 carreras:</span><br/>-->
 
-      <mat-form-field  style="width: 20em;"  color="warn" class=" pt-3 pb-5 px-0 mx-0" appearance="outline">
+      <!--<mat-form-field  style="width: 20em;"  color="warn" class=" pt-3 pb-5 px-0 mx-0" appearance="outline">
         <mat-label>Opciones</mat-label>
         <mat-select  name="carrera">
             <mat-option (click)="getSimuReportCarrera(carrera.id)" [value]="carrera.id" *ngFor="let carrera of list_carreras">{{carrera.nombre}}</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field>-->
    </section>
    <section style="width: 100%; background-color: #e1e1e1;" class="my-5">
     <div class="container py-4">
@@ -49,11 +49,11 @@
             <h2 style="color: #3b3b3b;" class="mb-0">Leyenda:</h2>
            
                 <button class="button-style mx-2  "
-                style="height: 4em; width: 9em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400;">
+                style="height: 4em; width: 9em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400;" disabled>
                    <span  >CURSO CONVALIDADO</span> </button> 
         
                 <button class="button-style  "
-                style="height: 4em; width: 7em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400;background-color: #b4b4b4;">
+                style="height: 4em; width: 7em; font-size: 0.9em; border-radius: 8px !important;  font-weight: 400; background-color: #b4b4b4;" disabled>
                     CURSO PENDIENTE</button> 
          
         </div>
@@ -117,7 +117,7 @@
     <div class="col-sm-6 col-md-5	col-lg-5	col-xl-5	col-xxl-5   texto-derecha ">
         <h2 class="col-12 texto-derecha  " style="color: #999999;  ">Para mayor información:</h2>
         <div class="align-self-end ">
-            <img  src="/assets/BTWSP-317X108.png" height="70"    alt="" class=" ps-5  ">
+            <a href="https://api.whatsapp.com/send?phone=51934793175&text=Deseo%20recibir%20informaci%C3%B3n%20sobre%20el%20proceso%20de%20convalidaci%C3%B3n%20de%20cursos%20de%20procedencia%20instituto" ><img  src="/assets/BTWSP-317X108.png" height="70"    alt="" class=" ps-5  "></a>
         </div>
     </div>
 

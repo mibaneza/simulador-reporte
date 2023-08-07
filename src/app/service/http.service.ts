@@ -30,7 +30,7 @@ export class HttpService {
     .set('p_cod_carrera_cpe', formData['p_cod_carrera_cpe'])
     .set('p_sel_politica', formData['p_sel_politica'])
     .set('p_sel_autorizo', formData['p_sel_autorizo']);
-     return this.http.post(this.URL+"/postulantes", body.toString(), { headers })
+     return this.http.post(this.URL+"/simu/postulantes", body.toString(), { headers })
   }
 
   getSimuReport(dni:string){ 

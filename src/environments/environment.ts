@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  HOST: 'https://simulador.brossolution.pe',
-  HOST_2: 'https://simulador.brossolution.pe',
+  HOST: 'https://back-convalidador-cursos.cientifica.edu.pe',
+  HOST_2: 'https://back-convalidador-cursos.cientifica.edu.pe',
 };
 
  
