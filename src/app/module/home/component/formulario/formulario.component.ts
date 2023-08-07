@@ -116,7 +116,7 @@ export class FormularioComponent implements OnInit{
       next: (data:any) => {
         this.utilService.swalClose();
         window.localStorage.setItem("formData",JSON.stringify(this.formData) );
-        this.router.navigate(['/report']);
+        this.router.navigate(['/report'],{skipLocationChange: true});
 
         },
       error: (err:any) => {+
