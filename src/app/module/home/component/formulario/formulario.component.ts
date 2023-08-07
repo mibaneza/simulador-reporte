@@ -48,11 +48,27 @@ export class FormularioComponent implements OnInit{
 
   async ngOnInit() {
     this.utilService.swalStartLoading();
-    await this.getCarreras();
-    await this.getInstitu();
+  //  await this.getCarreras();
+  //  await this.getInstitu();
     this.utilService.swalClose();
   }
+  onInputChange(event: any) {
+    console.log("onInputChange")
+    const input = event.target as HTMLInputElement;
+    let newValue =  input.value.replace(/e/gi, '');;
 
+    // Remove leading zeros
+     newValue = newValue.replace(/^0+/, '');
+ 
+    input.value = newValue ;
+  }
+  onKeyPress(event: KeyboardEvent) {
+    const forbiddenKeys = ['e', 'E', '+', '-'];
+
+    if (forbiddenKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+  }
   getInstitu(){
     return new Promise((resolve, reject)=>{
       const observer = {
@@ -117,6 +133,15 @@ export class FormularioComponent implements OnInit{
       this.utilService.swalWarning("Warning..", "El dni es invalido.");
       return
     }
+    if(String(form.form.value.p_celular).length != 9){
+      this.utilService.swalWarning("Warning..", "El celular es invalido.");
+      return
+    }
+ 
+    if(!this.politicaCheck){
+      this.utilService.swalWarning("Warning..", "Es necesario aceptar la política de tratamiento de datos personales.");
+      return;
+    }
    console.log(form.form.status);
    if(form.form.status == "VALID"){
     this.utilService.swalStartLoading();
@@ -143,5 +168,5 @@ export class FormularioComponent implements OnInit{
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
   }
- 
+
 }

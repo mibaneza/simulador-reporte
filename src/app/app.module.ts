@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './module/home/home.module';
 import { ReportModule } from './module/report/report.module';
+import { NumCelularDirective } from './directive/num-celular.directive';
  
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumCelularDirective
   ],
   imports: [
     BrowserModule,

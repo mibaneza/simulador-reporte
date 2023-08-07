@@ -45,14 +45,14 @@
     <div class="col-4">
       <mat-form-field  color="warn" class="col-12 px-0 mx-0" appearance="outline" >
         <mat-label >Celular</mat-label>
-        <input matInput type="number"name="p_celular" required  [(ngModel)]="formData.p_celular">
+        <input matInput type="number"name="p_celular" required  [(ngModel)]="formData.p_celular" (keypress)="onKeyPress($event)">
       </mat-form-field>
     </div>
  
     <div class="col-4">
       <mat-form-field  color="warn" class="col-12 px-0 mx-0" appearance="outline" >
         <mat-label >DNI</mat-label>
-        <input matInput type="number"name="p_dni"  required [(ngModel)]="formData.p_dni">
+        <input matInput type="number"name="p_dni"    required  [(ngModel)]="formData.p_dni" (keypress)="onKeyPress($event)">
       </mat-form-field>
     </div>
 
@@ -80,7 +80,7 @@
         </mat-select>
       </mat-form-field>
     </div> 
-    <mat-checkbox required [(ngModel)]="politicaCheck"  [ngModelOptions]="{standalone: true}">{{sel_politica}}</mat-checkbox> 
+    <mat-checkbox   required [(ngModel)]="politicaCheck"  [ngModelOptions]="{standalone: true}">{{sel_politica}}</mat-checkbox> 
     <p><mat-checkbox required [(ngModel)]="autorizoCheck" [ngModelOptions]="{standalone: true}" >{{sel_autorizo}}</mat-checkbox></p>
 
     </div>
